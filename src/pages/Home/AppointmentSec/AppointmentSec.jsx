@@ -2,12 +2,12 @@ import img1 from "../../../assets/images/doctor-small.png";
 import "./AppointmentSec.css";
 const AppointmentSec = () => {
   return (
-    <div className="appointment pt-16 pb-[168px] my-48">
+    <div className="appointment pt-16 pb-[62px] mt-48">
       <div className="grid grid-cols-1 lg:grid-cols-2 relative">
-        <div>
-          <img src={img1} alt="" className="absolute -top-40 left-0" />
+        <div className="hidden lg:block">
+          <img src={img1} alt="" className="absolute -top-40 left-0 w-[600px]" />
         </div>
-        <div className="space-y-10">
+        <div className="space-y-10 lg:mr-24 mx-4 lg:mx-0">
           <h4 className="text-md font-bold uppercase text-[#12D0DC]">
             appointment
           </h4>
