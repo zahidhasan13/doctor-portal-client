@@ -1,9 +1,45 @@
+import { useContext } from "react";
 import { FaUserDoctor } from "react-icons/fa6";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { AuthContext } from "../../provider/AuthProvider";
+import { Toaster, toast } from "react-hot-toast";
+import { updateProfile } from "firebase/auth";
 
 const Register = () => {
+  const { createUser } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const handleSignUp = (event) => {
+    event.preventDefault();
+
+    const form = event.target;
+    const name = form.name.value;
+    const email = form.email.value;
+    const password = form.password.value;
+
+    createUser(email, password)
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+        toast.success("User created successfully");
+        form.reset();
+        updateUserData(user, name);
+        navigate("/login");
+      })
+      .catch(() => {
+        toast.error("Couldn't create user");
+      });
+
+      const updateUserData = (user, name) => {
+        updateProfile(user, {
+          displayName: name,
+        })
+          .then(() => {})
+          .catch(() => {});
+      };
+    };
+
   return (
-    <div className="bg-gray-50 dark:bg-gray-900 my-8">
+    <div className="bg-gray-50 dark:bg-gray-900 py-8">
       <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto lg:py-0">
         <a
           href="#"
@@ -17,10 +53,10 @@ const Register = () => {
             <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
               Create and account
             </h1>
-            <form className="space-y-4 md:space-y-6" action="#">
+            <form onSubmit={handleSignUp} className="space-y-4 md:space-y-6">
               <div>
                 <label
-                  htmlFor="email"
+                  htmlFor="name"
                   className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                 >
                   Your Name
@@ -30,13 +66,13 @@ const Register = () => {
                   name="name"
                   id="name"
                   className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  placeholder="name@company.com"
+                  placeholder="Your name"
                   required
                 />
               </div>
               <div>
                 <label
-                  htmlFor="password"
+                  htmlFor="email"
                   className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                 >
                   Your email
@@ -45,14 +81,14 @@ const Register = () => {
                   type="email"
                   name="email"
                   id="email"
-                  placeholder="••••••••"
+                  placeholder="Your email"
                   className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   required
                 />
               </div>
               <div>
                 <label
-                  htmlFor="confirm-password"
+                  htmlFor="password"
                   className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                 >
                   Password
@@ -107,12 +143,18 @@ const Register = () => {
                 </Link>
               </p>
               <div className="flex  justify-between items-center">
-                    <div className="bg-[#CFCFCF] w-40 h-[1px] "></div>
-                    <p>OR</p>
-                    <div className="bg-[#CFCFCF] w-40 h-[1px] "></div>
-                  </div>
-              <button type="submit" className="w-full border-2 border-black py-2.5 rounded-lg font-medium uppercase">continue with google</button>
+                <div className="bg-[#CFCFCF] w-40 h-[1px] "></div>
+                <p>OR</p>
+                <div className="bg-[#CFCFCF] w-40 h-[1px] "></div>
+              </div>
+              <button
+                type="submit"
+                className="w-full border-2 border-black py-2.5 rounded-lg font-medium uppercase"
+              >
+                continue with google
+              </button>
             </form>
+            <Toaster />
           </div>
         </div>
       </div>
