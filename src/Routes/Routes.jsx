@@ -8,6 +8,8 @@ import Contact from "../pages/Contact/Contact";
 import Login from "../pages/Login/Login";
 import Register from "../pages/Register/Register";
 import NotFound from "../pages/NotFound/NotFound";
+import Profile from "../pages/Profile/Profile";
+import PrivateRoute from "./PrivateRoute";
 
 const router = createBrowserRouter([
     {
@@ -24,7 +26,7 @@ const router = createBrowserRouter([
         },
         {
           path: "appointment",
-          element: <Appointment></Appointment>
+          element: <PrivateRoute><Appointment></Appointment></PrivateRoute>
         },
         {
           path: "review",
@@ -33,6 +35,10 @@ const router = createBrowserRouter([
         {
           path: "contact",
           element: <Contact></Contact>
+        },
+        {
+          path: "profile",
+          element: <PrivateRoute><Profile></Profile></PrivateRoute>
         },
       ]
     },

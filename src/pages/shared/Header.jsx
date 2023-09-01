@@ -1,8 +1,11 @@
-import { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { useContext, useState } from "react";
+import { Link, NavLink } from "react-router-dom";
+import { AuthContext } from "../../provider/AuthProvider";
 
 const Header = () => {
     const [menuOpen, setMenuOpen] = useState(false);
+    const {user} = useContext(AuthContext);
+    console.log(user);
     return (
         <header>
     <nav className="bg-white border-gray-200 px-4 lg:px-6 py-2.5 dark:bg-gray-800">
@@ -45,9 +48,11 @@ const Header = () => {
                     }>Contact Us</NavLink>
                     </li>
                     <li>
-                        <NavLink to="/login" className={({isActive}) => 
-                    isActive ? "block py-2 pr-4 pl-3 text-white rounded lg:bg-gray-600 bg-gray-600 lg:text-white lg:px-3 dark:text-white" : "block py-2 pr-4 pl-3 text-white rounded lg:bg-transparent lg:text-black lg:px-3 dark:text-white"
-                    }>Login</NavLink>
+                        {
+                            user ? <Link to="/profile" className="block py-2 pr-4 pl-3 text-white rounded lg:bg-transparent lg:text-black lg:px-3 dark:text-white">{user.displayName}</Link> : <NavLink to="/login" className={({isActive}) => 
+                            isActive ? "block py-2 pr-4 pl-3 text-white rounded lg:bg-gray-600 bg-gray-600 lg:text-white lg:px-3 dark:text-white" : "block py-2 pr-4 pl-3 text-white rounded lg:bg-transparent lg:text-black lg:px-3 dark:text-white"
+                            }>Login</NavLink> 
+                        }
                     </li>
                 </ul>
             </div>

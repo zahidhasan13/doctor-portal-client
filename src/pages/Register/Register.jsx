@@ -6,7 +6,7 @@ import { Toaster, toast } from "react-hot-toast";
 import { updateProfile } from "firebase/auth";
 
 const Register = () => {
-  const { createUser } = useContext(AuthContext);
+  const { createUser, signInGoogle } = useContext(AuthContext);
   const navigate = useNavigate();
   const handleSignUp = (event) => {
     event.preventDefault();
@@ -37,6 +37,16 @@ const Register = () => {
           .catch(() => {});
       };
     };
+
+    const handleGoogleSignIn = () => {
+      signInGoogle()
+      .then(result => {
+        const user = result.user;
+        toast.success("Google signed in");
+        navigate("/");
+      })
+      .catch(() => {toast.error("Google signed in failed");});
+    }
 
   return (
     <div className="bg-gray-50 dark:bg-gray-900 py-8">
@@ -148,7 +158,7 @@ const Register = () => {
                 <div className="bg-[#CFCFCF] w-40 h-[1px] "></div>
               </div>
               <button
-                type="submit"
+              onClick={handleGoogleSignIn}
                 className="w-full border-2 border-black py-2.5 rounded-lg font-medium uppercase"
               >
                 continue with google
