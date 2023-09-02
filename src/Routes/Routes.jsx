@@ -10,6 +10,7 @@ import Register from "../pages/Register/Register";
 import NotFound from "../pages/NotFound/NotFound";
 import Profile from "../pages/Profile/Profile";
 import PrivateRoute from "./PrivateRoute";
+import MyAppointment from "../pages/MyAppointment/MyAppointment";
 
 const router = createBrowserRouter([
     {
@@ -40,6 +41,10 @@ const router = createBrowserRouter([
         {
           path: "profile",
           element: <PrivateRoute><Profile></Profile></PrivateRoute>
+        },
+        {
+          path: "myappointment",
+          element: <PrivateRoute><MyAppointment></MyAppointment></PrivateRoute>
         },
       ]
     },

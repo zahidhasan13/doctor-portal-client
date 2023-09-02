@@ -120,13 +120,13 @@ const Login = () => {
                 <p>OR</p>
                 <div className="bg-[#CFCFCF] w-40 h-[1px] "></div>
               </div>
+            </form>
               <button
                 type="submit"
                 className="w-full border-2 border-black py-2.5 rounded-lg font-medium uppercase"
               >
                 continue with google
               </button>
-            </form>
           </div>
         </div>
       </div>
