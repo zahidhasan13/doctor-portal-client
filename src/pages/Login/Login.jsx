@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../provider/AuthProvider";
 import { toast } from "react-hot-toast";
 const Login = () => {
-  const { signInUser } = useContext(AuthContext);
+  const { signInUser, signInGoogle } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const handleSignIn = (event) => {
@@ -14,16 +14,30 @@ const Login = () => {
     const password = form.password.value;
 
     signInUser(email, password)
-    .then(result => {
+      .then((result) => {
         const user = result.user;
         console.log(user);
         toast.success("Login successful");
         form.reset();
-        setTimeout(() => {navigate("/")}, 1000);
-    })
-    .catch(()=>{
+        setTimeout(() => {
+          navigate("/");
+        }, 1000);
+      })
+      .catch(() => {
         toast.error("Login failed");
-    })
+      });
+  };
+
+  const handleGoogleSignIn = () => {
+    signInGoogle()
+      .then((result) => {
+        const user = result.user;
+        toast.success("Google signed in");
+        navigate("/");
+      })
+      .catch(() => {
+        toast.error("Google signed in failed");
+      });
   };
   return (
     <div className="bg-gray-50 dark:bg-gray-900 py-8">
@@ -121,12 +135,13 @@ const Login = () => {
                 <div className="bg-[#CFCFCF] w-40 h-[1px] "></div>
               </div>
             </form>
-              <button
-                type="submit"
-                className="w-full border-2 border-black py-2.5 rounded-lg font-medium uppercase"
-              >
-                continue with google
-              </button>
+            <button
+              onClick={handleGoogleSignIn}
+              type="submit"
+              className="w-full border-2 border-black py-2.5 rounded-lg font-medium uppercase"
+            >
+              continue with google
+            </button>
           </div>
         </div>
       </div>

@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import img1 from "../../../assets/images/doctor-small.png";
 import "./AppointmentSec.css";
 const AppointmentSec = () => {
@@ -13,12 +14,13 @@ const AppointmentSec = () => {
           </h4>
           <h3 className="text-3xl text-white">Make an appointment Today</h3>
           <p className="text-white">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsumis that it has a more-or-less normal distribution of letters,as opposed to using Content here, content here, making it look like readable English. Many desktop publishing packages and web page</p>
-          <a
-            href="#"
-            className="inline-flex items-center justify-center px-5 py-3 mr-3 text-base font-medium text-center text-white rounded-lg bg-[#12D0DC] hover:bg-[#0aacb8] focus:ring-4 focus:ring-primary-300 dark:focus:ring-primary-900"
+          <Link to="/appointment">
+          <button
+            className="mt-10 px-5 py-3 mr-3 text-base font-medium text-center text-white rounded-lg bg-[#12D0DC] hover:bg-[#0aacb8] focus:ring-4 focus:ring-primary-300 dark:focus:ring-primary-900"
           >
             Get started
-          </a>
+          </button>
+          </Link>
         </div>
       </div>
     </div>

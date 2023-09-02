@@ -10,6 +10,7 @@ const AuthProvider = ({children}) => {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
     const [selectDate, setselectDate] = useState("");
+    const [appointment, setAppointment] = useState([]);
 
     const createUser = (email, password) => {
         setLoading(true);
@@ -43,6 +44,8 @@ const AuthProvider = ({children}) => {
         loading,
         selectDate,
         setselectDate,
+        appointment,
+        setAppointment,
         createUser,
         signInUser,
         signInGoogle,

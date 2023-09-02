@@ -1,21 +1,55 @@
 import { useContext } from "react";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../provider/AuthProvider";
 
 const Booking = () => {
-    const booking = useLoaderData();
-    const {user, selectDate} = useContext(AuthContext);
-    console.log(user, selectDate);
-    return (
-        <div className="max-w-screen-xl mx-auto">
-            <h2 className="text-2xl font-bold text-[#11D0DE] text-center my-8">Book Appointment: {booking.title}</h2>
-            <form>
+  const booking = useLoaderData();
+  console.log(booking.time, booking.price);
+  const { user, selectDate } = useContext(AuthContext);
+  const navigate = useNavigate();
+
+  const handleBooking = event => {
+    event.preventDefault();
+    const form = event.target;
+    const name = form.name.value;
+    const email = form.email.value;
+    const date = form.date.value;
+    const time = form.time.value;
+    const price = form.price.value;
+    const bookingAppointment = {
+        patientName:name,
+        email,
+        date,
+        time,
+        price,
+        appointmentId: booking._id,
+        dieseas: booking.title,
+    }
+
+    fetch("http://localhost:5000/bookings", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(bookingAppointment),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+               if(data.insertedId){
+                navigate("/appointment");
+               }
+                
+            })
+  }
+  return (
+    <div className="max-w-screen-xl mx-auto">
+      <h2 className="text-2xl font-bold text-[#11D0DE] text-center my-8">
+        Book Appointment: {booking.title}
+      </h2>
+      <form onSubmit={handleBooking}>
         <div className="grid grid-cols-2 gap-6">
           <div>
-            <label
-              className="block text-sm font-bold mb-2"
-              htmlFor="name"
-            >
+            <label className="block text-sm font-bold mb-2" htmlFor="name">
               Name
             </label>
             <input
@@ -28,10 +62,7 @@ const Booking = () => {
             />
           </div>
           <div>
-            <label
-              className="block text-sm font-bold mb-2"
-              htmlFor="name"
-            >
+            <label className="block text-sm font-bold mb-2" htmlFor="name">
               Date
             </label>
             <input
@@ -44,10 +75,7 @@ const Booking = () => {
             />
           </div>
           <div>
-            <label
-              className="block text-sm font-bold mb-2"
-              htmlFor="email"
-            >
+            <label className="block text-sm font-bold mb-2" htmlFor="email">
               Email
             </label>
             <input
@@ -59,10 +87,7 @@ const Booking = () => {
             />
           </div>
           <div>
-            <label
-              className="block text-sm font-bold mb-2"
-              htmlFor="time"
-            >
+            <label className="block text-sm font-bold mb-2" htmlFor="time">
               Time
             </label>
             <input
@@ -74,10 +99,7 @@ const Booking = () => {
             />
           </div>
           <div>
-            <label
-              className="block text-sm font-bold mb-2"
-              htmlFor="name"
-            >
+            <label className="block text-sm font-bold mb-2" htmlFor="name">
               Price
             </label>
             <input
@@ -89,10 +111,14 @@ const Booking = () => {
             />
           </div>
         </div>
-        <input type="submit" value="Book Service" className="w-full bg-[#11D0DE] px-5 py-2 rounded my-4 text-white font-bold cursor-pointer"/>
+        <input
+          type="submit"
+          value="Book Service"
+          className="w-full bg-[#11D0DE] px-5 py-2 rounded my-4 text-white font-bold cursor-pointer"
+        />
       </form>
-        </div>
-    );
+    </div>
+  );
 };
 
 export default Booking;

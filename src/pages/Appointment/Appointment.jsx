@@ -26,13 +26,15 @@ const Appointment = () => {
 
   return (
     <div className="max-w-screen-xl mx-auto">
-      <div className="appointment grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-0 mx-4 lg:mx-0">
+      <div className="appointment">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-0 mx-4 lg:mx-0 lg:px-48 lg:py-10">
         <div className="flex justify-center lg:block">
           <Calendar onChange={setselectDate} value={selectDate} />
         </div>
         <div>
           <img src={chair} alt="" />
         </div>
+      </div>
       </div>
       {
         dayOfWeek === "Friday" ? <p className="text-4xl text-[#19D3AE] font-bold mt-20 p-20 border-2 border-[#19D3AE] text-center mx-4 lg:mx-0">Weekend Day, Service not Available</p> : <div>
@@ -48,7 +50,7 @@ const Appointment = () => {
                   <h3 className="text-2xl font-bold">{app.time}</h3>
                   <p>Price: ${app.price}</p>
                   <p>{app.space} spaces are Available</p>
-                  <Link to={`/booking/${app._id}`}><button className=" mt-4 px-5 py-3 mr-3 text-base font-medium text-center text-white rounded-lg bg-[#12D0DC] hover:bg-[#0aacb8] focus:ring-4 focus:ring-primary-300 dark:focus:ring-primary-900">Book Appointment</button></Link>
+                  <Link to={`/appointment/${app._id}`}><button className=" mt-4 px-5 py-3 mr-3 text-base font-medium text-center text-white rounded-lg bg-[#12D0DC] hover:bg-[#0aacb8] focus:ring-4 focus:ring-primary-300 dark:focus:ring-primary-900">Book Appointment</button></Link>
               </div>)
           }
         </div></>

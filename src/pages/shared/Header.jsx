@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { AuthContext } from "../../provider/AuthProvider";
 
 const Header = () => {
@@ -146,16 +146,20 @@ const Header = () => {
                             </li>
                             <li>
                                 {user ? (
-                                    <Link
+                                    <NavLink
                                         onClick={() => {
                                             setIsOpen(!isOpen);
                                             closeMenu(); // Close the menu when a menu item is clicked
                                         }}
                                         to="/profile"
-                                        className="block py-2 pr-4 pl-3 text-white rounded lg:bg-transparent lg:text-black lg:px-3 dark:text-white"
+                                        className={({ isActive }) =>
+                                            isActive
+                                                ? "block py-2 pr-4 pl-3 text-white rounded lg:bg-gray-600 bg-gray-600 lg:text-white lg:px-3 dark:text-white"
+                                                : "block py-2 pr-4 pl-3 text-white rounded lg:bg-transparent lg:text-black lg:px-3 dark:text-white"
+                                        }
                                     >
                                         {user.displayName}
-                                    </Link>
+                                    </NavLink>
                                 ) : (
                                     <NavLink
                                         onClick={() => {
