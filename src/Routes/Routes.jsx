@@ -11,6 +11,7 @@ import NotFound from "../pages/NotFound/NotFound";
 import Profile from "../pages/Profile/Profile";
 import PrivateRoute from "./PrivateRoute";
 import MyAppointment from "../pages/MyAppointment/MyAppointment";
+import Booking from "../pages/Booking/Booking";
 
 const router = createBrowserRouter([
     {
@@ -45,6 +46,11 @@ const router = createBrowserRouter([
         {
           path: "myappointment",
           element: <PrivateRoute><MyAppointment></MyAppointment></PrivateRoute>
+        },
+        {
+          path: "booking/:id",
+          element: <Booking></Booking>,
+          loader: ({params}) => fetch(`http://localhost:5000/booking/${params.id}`)
         },
       ]
     },

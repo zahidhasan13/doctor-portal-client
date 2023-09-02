@@ -1,14 +1,14 @@
-import { useState } from "react";
+import { useContext } from "react";
 import Calendar from "react-calendar";
 import chair from "../../assets/images/chair.png";
 import "react-calendar/dist/Calendar.css";
+import { Link, useLoaderData } from "react-router-dom";
 import './Appointment.css'
-import { useLoaderData } from "react-router-dom";
+import { AuthContext } from "../../provider/AuthProvider";
 
 const Appointment = () => {
-  const [selectDate, setselectDate] = useState("");
+  const {selectDate, setselectDate} = useContext(AuthContext);
   const appointment = useLoaderData();
-  console.log(appointment);
   const daysOfWeek = [
     "Sunday",
     "Monday",
@@ -26,7 +26,7 @@ const Appointment = () => {
 
   return (
     <div className="max-w-screen-xl mx-auto">
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-0 lg:mx-48 lg:my-20 mx-4">
+      <div className="appointment grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-0 mx-4 lg:mx-0">
         <div className="flex justify-center lg:block">
           <Calendar onChange={setselectDate} value={selectDate} />
         </div>
@@ -48,7 +48,7 @@ const Appointment = () => {
                   <h3 className="text-2xl font-bold">{app.time}</h3>
                   <p>Price: ${app.price}</p>
                   <p>{app.space} spaces are Available</p>
-                  <button className="px-5 py-3 mr-3 text-base font-medium text-center text-white rounded-lg bg-[#12D0DC] hover:bg-[#0aacb8] focus:ring-4 focus:ring-primary-300 dark:focus:ring-primary-900">Book Appointment</button>
+                  <Link to={`/booking/${app._id}`}><button className=" mt-4 px-5 py-3 mr-3 text-base font-medium text-center text-white rounded-lg bg-[#12D0DC] hover:bg-[#0aacb8] focus:ring-4 focus:ring-primary-300 dark:focus:ring-primary-900">Book Appointment</button></Link>
               </div>)
           }
         </div></>

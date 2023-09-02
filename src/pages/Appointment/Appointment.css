@@ -1,3 +1,13 @@
 .react-calendar__tile--now {
   background: transparent;
 }
+.react-calendar__tile--now:hover {
+  background: #e6e6e6 !important;
+}
+.appointment {
+  background-image: url(../../assets//images/bg.png);
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  padding: 80px 192px;
+}

@@ -2,7 +2,7 @@ import img1 from "../../../assets/images/doctor-small.png";
 import "./AppointmentSec.css";
 const AppointmentSec = () => {
   return (
-    <div className="appointment pt-16 pb-[62px] mt-48">
+    <div className="appointment-sec pt-16 pb-[62px] mt-48">
       <div className="grid grid-cols-1 lg:grid-cols-2 relative">
         <div className="hidden lg:block">
           <img src={img1} alt="" className="absolute -top-40 left-0 w-[600px]" />
