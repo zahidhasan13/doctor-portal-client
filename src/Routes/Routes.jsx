@@ -26,7 +26,8 @@ const router = createBrowserRouter([
         },
         {
           path: "appointment",
-          element: <PrivateRoute><Appointment></Appointment></PrivateRoute>
+          element: <PrivateRoute><Appointment></Appointment></PrivateRoute>,
+          loader:() => fetch("http://localhost:5000/appointment")
         },
         {
           path: "review",

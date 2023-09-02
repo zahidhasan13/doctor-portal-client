@@ -1,0 +1,38 @@
+[
+  {
+    "title": "Teeth Orthodonics",
+    "time": "08.00 AM - 09.00 AM",
+    "price": 20,
+    "space": 10
+  },
+  {
+    "title": "Cosmetic Dentistry",
+    "time": "09.00 AM - 10.00 AM",
+    "price": 40,
+    "space": 6
+  },
+  {
+    "title": "Teeth Cleaning",
+    "time": "10.00 AM - 11.00 AM",
+    "price": 50,
+    "space": 3
+  },
+  {
+    "title": "Cavity Protection",
+    "time": "11.00 AM - 12.00 PM",
+    "price": 60,
+    "space": 5
+  },
+  {
+    "title": "Pediatric Dental",
+    "time": "06.00 PM - 07.00 PM",
+    "price": 70,
+    "space": 20
+  },
+  {
+    "title": "Oral Surgery",
+    "time": "07.00 PM - 08.00 PM",
+    "price": 80,
+    "space": 7
+  }
+]
