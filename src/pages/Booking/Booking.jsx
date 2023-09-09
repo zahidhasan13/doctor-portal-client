@@ -26,7 +26,7 @@ const Booking = () => {
         dieseas: booking.title,
     }
 
-    fetch("http://localhost:5000/bookings", {
+    fetch("https://doctor-portal-server-phi-one.vercel.app/bookings", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -42,12 +42,12 @@ const Booking = () => {
             })
   }
   return (
-    <div className="max-w-screen-xl mx-auto">
+    <div className="max-w-screen-xl mx-auto p-14">
       <h2 className="text-2xl font-bold text-[#11D0DE] text-center my-8">
         Book Appointment: {booking.title}
       </h2>
       <form onSubmit={handleBooking}>
-        <div className="grid grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mx-4 lg:mx-0">
           <div>
             <label className="block text-sm font-bold mb-2" htmlFor="name">
               Name
@@ -111,11 +111,13 @@ const Booking = () => {
             />
           </div>
         </div>
+        <div className="mx-4 lg:mx-0">
         <input
           type="submit"
           value="Book Service"
           className="w-full bg-[#11D0DE] px-5 py-2 rounded my-4 text-white font-bold cursor-pointer"
         />
+        </div>
       </form>
     </div>
   );

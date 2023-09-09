@@ -2,7 +2,7 @@ import chair from "../../../assets/images/chair.png";
 import "./Banner.css";
 const Banner = () => {
   return (
-    <div className="banner lg:py-16">
+    <div className="banner lg:py-16 pt-12">
       <div className="grid max-w-screen-xl px-4 py-8 mx-auto lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12">
         <div className="mr-auto place-self-center lg:col-span-7 order-2 lg:order-1">
           <h1 className="text-5xl font-bold text-[#3A4256] mb-7">

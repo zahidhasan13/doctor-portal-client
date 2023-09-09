@@ -1,13 +1,18 @@
 import { useContext, useEffect } from "react";
+import Swal from "sweetalert2";
 import { AuthContext } from "../../provider/AuthProvider";
 import MyAppointmentRow from "./MyAppointmentRow";
-import Swal from "sweetalert2";
 
 const MyAppointment = () => {
   const { user, appointment, setAppointment } = useContext(AuthContext);
-  const url = `http://localhost:5000/bookings?email=${user?.email}`;
+  const url = `https://doctor-portal-server-phi-one.vercel.app/bookings?email=${user?.email}`;
   useEffect(() => {
-    fetch(url)
+    fetch(url,{
+      method: 'GET',
+      headers:{
+        authorization: `Bearer ${localStorage.getItem('doctor-access-token')}`
+      }
+    })
       .then((res) => res.json())
       .then((data) => setAppointment(data));
   }, [url]);
@@ -23,7 +28,7 @@ const MyAppointment = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/bookings/${id}`, {
+        fetch(`https://doctor-portal-server-phi-one.vercel.app/bookings/${id}`, {
           method: "DELETE",
         })
           .then((res) => res.json())
@@ -38,7 +43,7 @@ const MyAppointment = () => {
     });
   };
   const handleUpdate = (id) => {
-    fetch(`http://localhost:5000/bookings/${id}`,{
+    fetch(`https://doctor-portal-server-phi-one.vercel.app/bookings/${id}`,{
       method: "PATCH",  
       headers: {
         "Content-Type": "application/json",
@@ -63,7 +68,7 @@ const MyAppointment = () => {
   };
 
   return (
-    <div className="max-w-screen-xl mx-auto mt-8">
+    <div className="max-w-screen-xl mx-auto pt-20">
       <h2 className="text-2xl font-bold text-[#11D0DE] text-center mb-8">Total Appointment: {appointment.length}</h2>
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 mx-4 lg:mx-0">
             {appointment?.map((appoint) => (

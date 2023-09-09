@@ -11,7 +11,7 @@ const Profile = () => {
       .then(() => {});
   };
   return (
-    <div className="max-w-screen-xl mx-auto space-y-4 mt-4">
+    <div className="max-w-screen-xl mx-auto space-y-4 mt-4 pt-14">
       <h3 className="text-4xl font-bold text-center text-[#19D3AE]">My Profile</h3>
       <div className="grid grid-cols-1 lg:grid-cols-3 lg:gap-4 lg:space-x-8 mx-4 lg:mx-0">
         <div className="col-span-1 border-2 border-[#11D0DE] p-4 space-y-4 order-2 lg:order-1">

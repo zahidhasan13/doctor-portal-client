@@ -1,17 +1,17 @@
 import { createBrowserRouter } from "react-router-dom";
 import Main from "../layout/Main";
-import Home from "../pages/Home/Home";
 import About from "../pages/About/About";
 import Appointment from "../pages/Appointment/Appointment";
-import Review from "../pages/Review/Review";
+import Booking from "../pages/Booking/Booking";
 import Contact from "../pages/Contact/Contact";
+import Home from "../pages/Home/Home";
 import Login from "../pages/Login/Login";
-import Register from "../pages/Register/Register";
+import MyAppointment from "../pages/MyAppointment/MyAppointment";
 import NotFound from "../pages/NotFound/NotFound";
 import Profile from "../pages/Profile/Profile";
+import Register from "../pages/Register/Register";
+import Review from "../pages/Review/Review";
 import PrivateRoute from "./PrivateRoute";
-import MyAppointment from "../pages/MyAppointment/MyAppointment";
-import Booking from "../pages/Booking/Booking";
 
 const router = createBrowserRouter([
     {
@@ -29,7 +29,7 @@ const router = createBrowserRouter([
         {
           path: "appointment",
           element: <PrivateRoute><Appointment></Appointment></PrivateRoute>,
-          loader:() => fetch("http://localhost:5000/appointment")
+          loader:() => fetch("https://doctor-portal-server-phi-one.vercel.app/appointment")
         },
         {
           path: "review",
@@ -50,7 +50,7 @@ const router = createBrowserRouter([
         {
           path: "appointment/:id",
           element: <Booking></Booking>,
-          loader: ({params}) => fetch(`http://localhost:5000/appointment/${params.id}`)
+          loader: ({params}) => fetch(`https://doctor-portal-server-phi-one.vercel.app/appointment/${params.id}`)
         },
       ]
     },

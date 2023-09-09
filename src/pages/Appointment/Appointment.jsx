@@ -25,7 +25,7 @@ const Appointment = () => {
   const year = selectDate && selectDate.getFullYear();
 
   return (
-    <div className="max-w-screen-xl mx-auto">
+    <div className="max-w-screen-xl mx-auto mt-8 lg:mt-0 pt-12">
       <div className="appointment">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-0 mx-4 lg:mx-0 lg:px-48 lg:py-10">
         <div className="flex justify-center lg:block">
@@ -45,7 +45,7 @@ const Appointment = () => {
           </h4>
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {
-              appointment.map(app => <div key={app._id} className="p-4 shadow-md text-center space-y-3">
+              appointment.map((app, index) => <div key={index} className="p-4 shadow-md text-center space-y-3">
                   <h3 className="text-xl text-[#19D3AE] font-bold">{app.title}</h3>
                   <h3 className="text-2xl font-bold">{app.time}</h3>
                   <p>Price: ${app.price}</p>

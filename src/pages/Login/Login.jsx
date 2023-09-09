@@ -1,8 +1,8 @@
 import { useContext } from "react";
+import { toast } from "react-hot-toast";
 import { FaUserDoctor } from "react-icons/fa6";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../provider/AuthProvider";
-import { toast } from "react-hot-toast";
 const Login = () => {
   const { signInUser, signInGoogle } = useContext(AuthContext);
   const navigate = useNavigate();
@@ -16,7 +16,22 @@ const Login = () => {
     signInUser(email, password)
       .then((result) => {
         const user = result.user;
-        console.log(user);
+        const loggedInUser = {
+          email: user.email
+        }
+        console.log(loggedInUser.email);
+        fetch('https://doctor-portal-server-phi-one.vercel.app/jwt',{
+          method: 'POST',
+          headers:{
+            'content-type': 'application/json'
+          },
+          body: JSON.stringify(loggedInUser)
+        })
+        .then(res => res.json())
+        .then(data => {
+          localStorage.setItem('doctor-access-token', data.token);
+          console.log(data);
+        })
         toast.success("Login successful");
         form.reset();
         setTimeout(() => {
